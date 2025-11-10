@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: bc_hybridchatbot-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: hybridchatbot-general
+          uri: lb://bc_hybridchatbot
+          predicates:
+            - Path=/api-hybridchatbot/**
+          filters:
+            - StripPrefix=1
