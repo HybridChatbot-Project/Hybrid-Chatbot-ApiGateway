@@ -3,20 +3,37 @@ server:
 
 spring:
   application:
-    name: bc_hybridchatbot-gateway
+    name: bc-hybridchatbot-gateway
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
+        username: nacos
+        password: nacos
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: hybridchatbot-general
-          uri: lb://bc_hybridchatbot
+        - id: bc-hybridchatbot
+          uri: lb://bc-hybridchatbot
           predicates:
             - Path=/api-hybridchatbot/**
-          filters:
-            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
+  health:
+    show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+    com.alibaba.cloud.nacos: DEBUG
