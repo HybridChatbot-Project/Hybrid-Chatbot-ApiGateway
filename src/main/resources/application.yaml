@@ -34,6 +34,11 @@ spring:
           uri: lb://bc-hybridchatbot
           predicates:
             - Path=/api-hybridchatbot/**
+        - id: bc-hybridchatbot-stats
+          uri: lb://bc-hybridchatbot-stats
+          predicates:
+            - Path=/api-hybridchatbot-stats/**
+
 
 management:
   endpoints:
