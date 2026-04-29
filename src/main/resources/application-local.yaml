@@ -5,11 +5,11 @@ spring:
   application:
     name: bc-hybridchatbot-gateway
   cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
-        username: nacos
-        password: nacos
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
+#        username: nacos
+#        password: nacos
     gateway:
       globalcors:
         corsConfigurations:
@@ -25,10 +25,10 @@ spring:
             allowedHeaders:
               - "*"
             allowCredentials: true
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
       routes:
         - id: bc-hybridchatbot
           uri: lb://bc-hybridchatbot
@@ -49,10 +49,10 @@ management:
     gateway:
       enabled: true
   health:
-    show-details: always
+    show-details: never
 
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.cloud.loadbalancer: DEBUG
-    com.alibaba.cloud.nacos: DEBUG
+#    com.alibaba.cloud.nacos: DEBUG
